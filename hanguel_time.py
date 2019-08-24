@@ -77,24 +77,57 @@ def korean_text():
     nowdate = now.strftime('%H')
     time_now = int(nowdate) // 2 + 1
     time_now = int(time_now)
-    con = pymysql.connect(host="localhost", user="hanguel", password="hanguel3071", db="hanguel_clock", charset='utf8')
-
     try:
-        curs = con.cursor()
-        curs.execute("SELECT text FROM hanguel where hour = %s ORDER BY RAND() LIMIT 1;", (time_now))
-        rows = curs.fetchone()
+        con = pymysql.connect(host="localhost", user="hanguel", password="hanguel3071", db="hanguel_clock", charset='utf8')
 
-    finally:
-        con.close()
+        try:
+            curs = con.cursor()
+            curs.execute("SELECT text FROM hanguel where hour = %s ORDER BY RAND() LIMIT 1;", (time_now))
+            rows = curs.fetchone()
+            show_text = rows[0]
+
+        finally:
+            con.close()
 
 
-    show_text = rows[0]
+    except:
+        if time_now == 1:
+            show_text = "좋은 꿈 꿔"
+        elif time_now == 2:
+            show_text = "아직 안 자고 뭐해?"
+        elif time_now == 3:
+            show_text = "오늘도 좋은 아침"
+        elif time_now == 4:
+            show_text = "잠은 잘 잤니?"
+        elif time_now == 5:
+            show_text = "아침은 먹었니?"
+        elif time_now == 6:
+            show_text = "지금 뭐해?"
+        elif time_now == 7:
+            show_text = "뭐하고 있어?"
+        elif time_now == 8:
+            show_text = "기재기 한 번 어때?"
+        elif time_now == 9:
+            show_text = "힘들지 않아?"
+        elif time_now == 10:
+            show_text = "오늘 저녁 맛있었어?"
+        elif time_now == 11:
+            show_text = "지금 뭐해?"
+        elif time_now == 12:
+            show_text = "굿나잇!"
+
+
+
+
+
+
     return show_text
 
 def korean_clock():
     showtime = korean_text() + "\n" + korean_time()
     return showtime
 
-#print(korean_time())
-#print(korean_text())
-#print(korean_clock())
+if __name__ == "__main__":
+    print(korean_time())
+    print(korean_text())
+    print(korean_clock())

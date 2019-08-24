@@ -1,0 +1,15 @@
+True
+F:/19_hanguelclock/hanguel_gui/hanguel_wallpaper.png
+60
+SSFlower.ttf
+F:/19_hanguelclock/hanguel_gui/font
+True
+1920
+1080
+center
+white
+fix
+F:/19_hanguelclock/hanguel_gui/image/saved/hanguel_clock.png
+9
+
+#hanguel_wallpaper.png
